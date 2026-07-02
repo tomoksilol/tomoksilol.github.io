@@ -1,1 +1,1 @@
-# tomoksilol.github.io
+po chuja to czytasz lol
