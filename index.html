@@ -40,14 +40,14 @@
             constructor(x, y) {
                 this.x = x;
                 this.y = y;
-                this.size = Math.random() * 20 + 15; 
+                this.size = Math.random() * 40 + 30; 
                 
                 const angle = Math.random() * Math.PI * 2;
-                const speed = Math.random() * 5 + 2;
+                const speed = Math.random() * 3 + 1;
                 this.velocityX = Math.cos(angle) * speed;
                 this.velocityY = Math.sin(angle) * speed;
                 
-                this.grawitacja = 0.15; 
+                this.grawitacja = 0.10; 
                 this.alpha = 1; 
                 this.decay = Math.random() * 0.015 + 0.01; 
             }
