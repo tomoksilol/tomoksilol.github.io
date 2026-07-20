@@ -1,1 +1,289 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xXx_Ur_Scene_Nightmare_xXx</title>
+    <style>
+        /* Reset i tło w paski / mroczny klimat */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #000000;
+            /* Klasyczne tło z subtelnymi neonowymi pasami */
+            background-image: linear-gradient(90deg, rgba(255, 0, 127, 0.05) 50%, transparent 50%),
+                              linear-gradient(#111 50%, #000 50%);
+            background-size: 40px 40px, 6px 6px;
+            color: #ffffff;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 14px;
+            padding: 20px;
+        }
 
+        /* Główny kontener w stylu MySpace profile */
+        .profile-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #111111;
+            border: 4px double #00ff55; /* Neonowa zieleń */
+            box-shadow: 0px 0px 20px #ff007f; /* Różowa poświata */
+            padding: 20px;
+        }
+
+        /* Nagłówek */
+        header {
+            text-align: center;
+            border-bottom: 3px dashed #ff007f;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-family: 'Impact', Charcoal, sans-serif;
+            font-size: 2.5rem;
+            color: #ff007f;
+            text-shadow: 3px 3px 0px #00ff55, -2px -2px 0px #00ffff;
+            letter-spacing: 2px;
+        }
+        .status {
+            color: #00ffff;
+            font-weight: bold;
+            margin-top: 5px;
+            font-size: 1.1rem;
+        }
+
+        /* Układ dwukolumnowy */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Lewa kolumna (Zdjęcie i info) */
+        .left-col {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .avatar-box {
+            border: 3px solid #ff007f;
+            background: #000;
+            padding: 5px;
+            position: relative;
+        }
+        .avatar-placeholder {
+            width: 100%;
+            height: 250px;
+            background: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff007f;
+            border: 2px dashed #00ff55;
+            font-weight: bold;
+            text-shadow: 1px 1px black;
+            text-transform: uppercase;
+        }
+        /* Zebra-accent pod zdjęciem */
+        .zebra-bar {
+            height: 15px;
+            background: linear-gradient(45deg, #000 25%, #ff007f 25%, #ff007f 50%, #000 50%, #000 75%, #ff007f 75%);
+            background-size: 20px 20px;
+            margin-top: 5px;
+        }
+
+        .box {
+            background: #000000;
+            border: 2px solid #00ff55;
+            padding: 10px;
+        }
+        .box-title {
+            background: #ff007f;
+            color: #000;
+            font-family: 'Impact', sans-serif;
+            padding: 3px 5px;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        /* Prawa kolumna (Bloki tekstu) */
+        .right-col {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Linki / Sociale */
+        a {
+            color: #00ffff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            color: #ff007f;
+            text-decoration: underline;
+            background: #00ff55;
+        }
+
+        ul {
+            list-style-type: '☠ ';
+            margin-left: 20px;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+
+        /* Sekcja muzyczna / Odtwarzacz widżet */
+        .music-player {
+            background: #222;
+            border: 1px inset #ff007f;
+            padding: 10px;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #00ff55;
+        }
+
+        /* Top 4 Znajomych (Klasyk!) */
+        .top-friends {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+        .friend {
+            background: #111;
+            border: 1px solid #ff007f;
+            padding: 5px;
+        }
+        .friend-pic {
+            width: 100%;
+            height: 60px;
+            background: #333;
+            margin-bottom: 3px;
+            border: 1px solid #00ff55;
+        }
+
+        /* Stopka z "błyskotkami" (Blinkies) */
+        footer {
+            margin-top: 20px;
+            border-top: 3px dashed #00ff55;
+            padding-top: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+        }
+        .blink {
+            animation: blinker 0.8s linear infinite;
+            color: #ff007f;
+            font-weight: bold;
+        }
+        @keyframes blinker {
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="profile-container">
+    
+    <!-- NAGŁÓWEK -->
+    <header>
+        <h1>xXx_gLoOmY_kId_xXx</h1>
+        <div class="status">SZACUN ALBO PISZ! ☠ || Nastroj: <span>Zdezorientowany 🦖</span></div>
+    </header>
+
+    <!-- GŁÓWNA ZAWARTOŚĆ -->
+    <div class="main-content">
+        
+        <!-- LEWA KOLUMNA -->
+        <div class="left-col">
+            <div class="avatar-box">
+                <!-- Tutaj wstawiasz link do swojego zdjęcia w src="" -->
+                <div class="avatar-placeholder">Tu wstaw fotke pod katem z gory</div>
+                <div class="zebra-bar"></div>
+            </div>
+
+            <div class="box">
+                <div class="box-title">UR CONTACT</div>
+                <ul>
+                    <li>MySpace: <a href="#">Kliknij tu!</a></li>
+                    <li>Last.fm: <a href="#">@scenecore_2006</a></li>
+                    <li>GG: <span>7776661</span></li>
+                </ul>
+            </div>
+
+            <div class="box">
+                <div class="box-title">MUZIK PLAYER</div>
+                <div class="music-player">
+                    ♫ Teraz leci: <br>
+                    <strong>Bring Me The Horizon - Pray for Plagues</strong>
+                    <br>[01:45/04:21]
+                </div>
+            </div>
+        </div>
+
+        <!-- PRAWA KOLUMNA -->
+        <div class="right-col">
+            <div class="box">
+                <div class="box-title">O MNIE... XD</div>
+                <p>Siemanko. Nie interesuje mnie co o mnie myslisz. Kocham czarny, rozowy i mocny bas. Zostaw komcia albo spadaj! 🖤💚🖤</p>
+                <br>
+                <p>Mój styl to mieszanka 2007 emo i internetowego glitchu. PC4PC zawsze aktualne, napisz na priv!</p>
+            </div>
+
+            <div class="box">
+                <div class="box-title">MOJE ZESPOLY</div>
+                <ul>
+                    <li>My Chemical Romance (stare płyty!)</li>
+                    <li>From First To Last</li>
+                    <li>Asking Alexandria</li>
+                    <li>Dot Dot Curve</li>
+                </ul>
+            </div>
+
+            <!-- TOP SPACE FRIENDS -->
+            <div class="box">
+                <div class="box-title">UR BEST FRIENDZ (Top 4)</div>
+                <div class="top-friends">
+                    <div class="friend">
+                        <div class="friend-pic"></div>
+                        <a href="#">x_Kasia_x</a>
+                    </div>
+                    <div class="friend">
+                        <div class="friend-pic"></div>
+                        <a href="#">RawrBoy</a>
+                    </div>
+                    <div class="friend">
+                        <div class="friend-pic"></div>
+                        <a href="#">SceneQeen</a>
+                    </div>
+                    <div class="friend">
+                        <div class="friend-pic"></div>
+                        <a href="#">Tom</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- STOPKA -->
+    <footer>
+        <p>© 2006-2026 Zrobione w przypływie nostalgii. <span class="blink">RAWR! XD</span></p>
+    </footer>
+
+</div>
+
+</body>
+</html>
