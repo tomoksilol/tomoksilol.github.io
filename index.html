@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>about tomoksi</title>
+    <title>Wii Menu 1:1</title>
     <style>
         * {
             box-sizing: border-box;
@@ -14,72 +14,71 @@
             margin: 0;
             padding: 0;
             height: 100vh;
-            background-color: #f3f3f3;
-            background-image: radial-gradient(#e0e0e0 2px, transparent 2px);
-            background-size: 24px 24px;
-            font-family: 'Arial', sans-serif;
+            background-color: #f2f2f2;
+            background-image: linear-gradient(#e6e6e6 1px, transparent 1px), linear-gradient(90deg, #e6e6e6 1px, transparent 1px);
+            background-size: 100% 4px, 4px 100%;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: flex-start;
             overflow: hidden;
             cursor: none;
-            padding-top: 40px;
+            padding-top: 30px;
         }
 
         #wii-cursor {
-            width: 48px;
-            height: 48px;
+            width: 52px;
+            height: 52px;
             position: fixed;
             pointer-events: none;
             z-index: 9999;
-            transform: translate(-15px, -10px);
-            transition: transform 0.03s ease;
+            transform: translate(-14px, -8px);
+            transition: transform 0.02s ease;
         }
 
-        .wii-container {
+        .wii-main-layout {
             display: flex;
             align-items: center;
-            max-width: 1200px;
+            justify-content: center;
             width: 100%;
-            padding: 0 20px;
-            position: relative;
+            max-width: 1240px;
+            padding: 0 40px;
         }
 
         .wii-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             grid-template-rows: repeat(3, 1fr);
-            grid-gap: 20px;
-            flex-grow: 1;
+            grid-gap: 16px 22px;
+            width: 92%;
         }
 
         .wii-channel {
-            background: linear-gradient(to bottom, #ffffff 0%, #fcfcfc 40%, #efefef 100%);
-            border: 4px solid #dbdbdb;
-            border-radius: 20px;
-            aspect-ratio: 1.57 / 1;
-            box-shadow: 0 6px 0 #d5d5d5, inset 0 2px 5px rgba(0,0,0,0.05);
+            background: linear-gradient(to bottom, #ffffff 0%, #ffffff 25%, #f7f7f7 55%, #e6e6e6 100%);
+            border: 4px solid #dfdfdf;
+            border-radius: 24px;
+            aspect-ratio: 1.62 / 1;
+            box-shadow: 0 7px 0 #d1d1d1, inset 0 2px 4px rgba(0,0,0,0.03);
             display: flex;
             justify-content: center;
             align-items: center;
             font-weight: bold;
-            color: #444;
-            font-size: 1.2rem;
+            color: #2b5b84;
+            font-size: 1.25rem;
             position: relative;
-            transition: all 0.1s ease;
+            transition: all 0.08s ease;
             cursor: none;
         }
 
         .wii-channel:not(.empty):hover {
-            border-color: #64b5f6;
-            box-shadow: 0 6px 0 #1e88e5, 0 0 20px rgba(33, 150, 243, 0.5);
-            transform: scale(1.03);
-            color: #1e88e5;
+            border-color: #55c7ec;
+            box-shadow: 0 7px 0 #3fa1c0, 0 0 22px rgba(85, 199, 236, 0.6);
+            transform: scale(1.04);
         }
 
         .wii-channel:not(.empty):active {
-            transform: scale(0.98) translateY(4px);
-            box-shadow: 0 2px 0 #1e88e5;
+            transform: scale(0.97) translateY(5px);
+            box-shadow: 0 2px 0 #3fa1c0;
         }
 
         .channel-content {
@@ -88,36 +87,48 @@
         }
 
         .wii-channel.empty {
-            background: #fbfbfb;
-            border: 4px solid #e8e8e8;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
+            background: linear-gradient(to bottom, #fcfcfc, #f4f4f4);
+            border: 4px solid #e3e3e3;
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.02);
+        }
+
+        .wii-nav-container {
+            width: 8%;
+            display: flex;
+            justify-content: flex-end;
+            padding-left: 20px;
         }
 
         .wii-next-btn {
-            width: 45px;
-            height: 75px;
-            background: #ffffff;
-            border: 4px solid #e0e0e0;
-            border-radius: 12px;
-            margin-left: 25px;
+            width: 46px;
+            height: 84px;
+            background: linear-gradient(to bottom, #ffffff, #f7f7f7);
+            border: 4px solid #dedede;
+            border-radius: 14px;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 4px 0 #d5d5d5;
+            box-shadow: 0 4px 0 #c7c7c7;
             cursor: none;
-            transition: all 0.1s ease;
+            transition: all 0.08s ease;
         }
 
         .wii-next-btn:hover {
-            border-color: #64b5f6;
-            box-shadow: 0 4px 0 #1e88e5, 0 0 10px rgba(33, 150, 243, 0.3);
+            border-color: #55c7ec;
+            box-shadow: 0 4px 0 #3fa1c0, 0 0 12px rgba(85, 199, 236, 0.4);
+            transform: scale(1.03);
+        }
+
+        .wii-next-btn:active {
+            transform: scale(0.96) translateY(3px);
+            box-shadow: 0 1px 0 #3fa1c0;
         }
 
         .wii-next-btn svg {
-            width: 18px;
-            fill: #9be2f6;
-            stroke: #4baed4;
-            stroke-width: 2;
+            width: 16px;
+            fill: #9ee6f8;
+            stroke: #3ca9d1;
+            stroke-width: 2.5;
         }
 
         .wii-bottom-bar {
@@ -125,8 +136,8 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 155px;
-            background: #e2e2e2;
+            height: 165px;
+            background: #d4d4d4;
             z-index: 100;
         }
 
@@ -135,99 +146,145 @@
             top: -4px;
             left: 0;
             width: 100%;
-            height: 160px;
-            background: #f3f3f3;
-            border-top: 5px solid #a6e0f3;
-            clip-path: polygon(0% 12%, 18% 12%, 30% 65%, 70% 65%, 82% 12%, 100% 12%, 100% 100%, 0% 100%);
+            height: 170px;
+            background: #f2f2f2;
+            border-top: 5px solid #7cd1ee;
+            clip-path: polygon(0% 15%, 16% 15%, 28% 68%, 72% 68%, 84% 15%, 100% 15%, 100% 100%, 0% 100%);
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
-            padding: 0 60px 25px 60px;
+            padding: 0 70px 30px 70px;
         }
 
-        .wii-btn-left, .wii-btn-right {
-            background: linear-gradient(to bottom, #ffffff, #eaeaea);
-            border: 4px solid #dfdfdf;
+        .wii-btn-left {
+            background: linear-gradient(to bottom, #ffffff 0%, #f7f7f7 40%, #e0e0e0 100%);
+            border: 4px solid #d3d3d3;
             border-radius: 50%;
-            width: 82px;
-            height: 82px;
-            box-shadow: 0 5px 0 #cccccc;
+            width: 96px;
+            height: 96px;
+            box-shadow: 0 6px 0 #bcbcbc, inset 0 2px 4px rgba(0,0,0,0.05);
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: none;
-            transition: all 0.1s ease;
+            transition: all 0.08s ease;
         }
 
-        .wii-btn-left:hover, .wii-btn-right:hover {
-            border-color: #64b5f6;
-            box-shadow: 0 5px 0 #1e88e5;
+        .wii-btn-left:hover {
+            border-color: #55c7ec;
+            box-shadow: 0 6px 0 #3fa1c0;
         }
 
         .wii-btn-left .inner-circle {
-            width: 62px;
-            height: 62px;
-            border: 3px solid #e5e5e5;
+            width: 74px;
+            height: 74px;
+            border: 4px solid #e8e8e8;
             border-radius: 50%;
+            background: transparent;
+            box-shadow: inset 0 2px 3px rgba(0,0,0,0.02);
+        }
+
+        .wii-btn-right {
+            background: linear-gradient(to bottom, #ffffff 0%, #f7f7f7 40%, #e0e0e0 100%);
+            border: 4px solid #d3d3d3;
+            border-radius: 50%;
+            width: 96px;
+            height: 96px;
+            box-shadow: 0 6px 0 #bcbcbc, inset 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: none;
+            position: relative;
+            transition: all 0.08s ease;
+        }
+
+        .wii-btn-right:hover {
+            border-color: #55c7ec;
+            box-shadow: 0 6px 0 #3fa1c0;
         }
 
         .wii-btn-right svg {
-            width: 38px;
-            height: 38px;
-            fill: #7a7a7a;
+            width: 44px;
+            height: 44px;
+            fill: #8a8a8a;
+        }
+
+        .wii-mail-badge {
+            position: absolute;
+            bottom: 12px;
+            width: 14px;
+            height: 14px;
+            background-color: #b5b5b5;
+            border-radius: 50%;
+        }
+
+        .wii-sd-slot {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 46px;
+            height: 56px;
+            background: linear-gradient(to bottom, #ffffff, #eaeaea);
+            border: 3px solid #dcdcdc;
+            border-radius: 8px;
+            box-shadow: 0 4px 0 #cbcbcb;
+            margin-bottom: 18px;
+            margin-left: 35px;
         }
 
         .wii-sd-card {
-            width: 34px;
-            height: 44px;
-            background: #5ac8fa;
-            border: 2px solid #ffffff;
-            border-radius: 4px;
+            width: 22px;
+            height: 30px;
+            background: #54c5eb;
+            border: 1px solid #ffffff;
+            border-radius: 2px;
             position: relative;
-            clip-path: polygon(0% 20%, 20% 0%, 100% 0%, 100% 100%, 0% 100%);
-            box-shadow: 0 3px 5px rgba(0,0,0,0.15);
-            margin-bottom: 15px;
-            margin-left: 40px;
+            clip-path: polygon(0% 20%, 23% 0%, 100% 0%, 100% 100%, 0% 100%);
         }
 
         .wii-sd-card::after {
             content: '';
             position: absolute;
-            top: 30%; left: 20%; width: 60%; height: 15%;
+            top: 25%; left: 20%; width: 60%; height: 15%;
             background: white;
-            border-radius: 2px;
+            border-radius: 1px;
         }
 
         .wii-center-info {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            bottom: 20px;
+            bottom: 24px;
             text-align: center;
-            font-family: 'Arial', sans-serif;
-            color: #767676;
+            color: #707070;
         }
 
         .wii-time {
-            font-size: 3rem;
+            font-size: 3.6rem;
             font-weight: bold;
-            letter-spacing: -1px;
+            letter-spacing: -2px;
             display: flex;
             justify-content: center;
             align-items: baseline;
+            font-family: Arial, sans-serif;
+            color: #616161;
         }
 
         .wii-time span {
-            font-size: 1.2rem;
-            margin-left: 8px;
-            font-weight: normal;
+            font-size: 1.25rem;
+            margin-left: 6px;
+            font-weight: bold;
+            letter-spacing: 0px;
+            color: #7c7c7c;
         }
 
         .wii-date {
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             font-weight: bold;
-            color: #8c8c8c;
-            margin-top: -2px;
+            color: #858585;
+            margin-top: -6px;
+            letter-spacing: -0.5px;
         }
 
         .wii-modal {
@@ -238,14 +295,14 @@
             transform: translate(-50%, -50%) scale(0.9);
             width: 540px;
             background: white;
-            border: 6px solid #4fc3f7;
-            border-radius: 28px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            border: 6px solid #54c5eb;
+            border-radius: 32px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.18);
             z-index: 10000;
-            padding: 35px;
+            padding: 40px;
             text-align: center;
             opacity: 0;
-            transition: all 0.2s ease;
+            transition: all 0.15s ease;
         }
 
         .wii-modal.active {
@@ -257,39 +314,39 @@
         .wii-modal h2 {
             color: #333;
             margin-top: 0;
-            font-size: 1.6rem;
+            font-size: 1.7rem;
         }
 
         .wii-modal p {
             color: #666;
             line-height: 1.6;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
         }
 
         .wii-modal-close {
             margin-top: 25px;
-            background: linear-gradient(to bottom, #ffffff, #f1f1f1);
-            border: 3px solid #dfdfdf;
-            padding: 12px 45px;
-            border-radius: 25px;
+            background: linear-gradient(to bottom, #ffffff, #f4f4f4);
+            border: 3px solid #dcdcdc;
+            padding: 14px 55px;
+            border-radius: 28px;
             font-weight: bold;
             color: #555;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 0 #d5d5d5;
+            font-size: 1.15rem;
+            box-shadow: 0 4px 0 #cbcbcb;
             cursor: none;
         }
 
         .wii-modal-close:hover {
-            border-color: #64b5f6;
-            color: #1e88e5;
-            box-shadow: 0 4px 0 #1e88e5;
+            border-color: #54c5eb;
+            color: #1c99c2;
+            box-shadow: 0 4px 0 #3fa1c0;
         }
 
         .overlay {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.08);
+            background: rgba(0,0,0,0.06);
             z-index: 9998;
         }
         .overlay.active { display: block; }
@@ -299,17 +356,17 @@
 
     <div id="wii-cursor">
         <svg id="cursor-svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-            <path id="cursor-path" d="M12,4 C12,2 14,2 14,4 L14,14 L16,14 L16,5 C16,3 18,3 18,5 L18,14 L20,14 L20,7 C20,5 22,5 22,7 L22,14 L24,14 L24,10 C24,8 26,8 26,10 L26,18 C26,24 21,28 16,28 C11,28 7,24 7,18 L7,13 C7,11 9,11 9,13 L9,14 L10,14 L10,4 C10,2 12,2 12,4 Z" fill="white" stroke="#000000" stroke-width="2.5"/>
-            <circle cx="14" cy="4" r="1.5" fill="#2196f3"/>
+            <path id="cursor-path" d="M12,4 C12,2 14,2 14,4 L14,14 L16,14 L16,5 C16,3 18,3 18,5 L18,14 L20,14 L20,7 C20,5 22,5 22,7 L22,14 L24,14 L24,10 C24,8 26,8 26,10 L26,18 C26,24 21,28 16,28 C11,28 7,24 7,18 L7,13 C7,11 9,11 9,13 L9,14 L10,14 L10,4 C10,2 12,2 12,4 Z" fill="white" stroke="#000000" stroke-width="2.2"/>
+            <circle cx="14" cy="4" r="1.2" fill="#3fa1c0"/>
         </svg>
     </div>
 
-    <div class="wii-container">
+    <div class="wii-main-layout">
         <div class="wii-grid">
             <div class="wii-channel" onclick="openModal('about-modal')">
                 <div class="channel-content">
-                    <div style="font-size: 2.2rem; margin-bottom: 5px;">👤</div>
-                    About Me
+                    <div style="font-size: 2.4rem; margin-bottom: 4px;">👤</div>
+                    <div style="font-family: 'Arial Black', sans-serif; font-size: 1.05rem; letter-spacing: -0.5px;">About Me</div>
                 </div>
             </div>
 
@@ -326,10 +383,12 @@
             <div class="wii-channel empty"></div>
         </div>
 
-        <div class="wii-next-btn">
-            <svg viewBox="0 0 24 24">
-                <polygon points="6,4 18,12 6,20"/>
-            </svg>
+        <div class="wii-nav-container">
+            <div class="wii-next-btn">
+                <svg viewBox="0 0 24 24">
+                    <polygon points="7,3 19,12 7,21"/>
+                </svg>
+            </div>
         </div>
     </div>
 
@@ -339,18 +398,21 @@
                 <div class="wii-btn-left">
                     <div class="inner-circle"></div>
                 </div>
-                <div class="wii-sd-card"></div>
+                <div class="wii-sd-slot">
+                    <div class="wii-sd-card"></div>
+                </div>
             </div>
 
             <div class="wii-center-info">
-                <div class="wii-time" id="clock">00:00<span>PM</span></div>
+                <div class="wii-time" id="clock">0:00<span>PM</span></div>
                 <div class="wii-date" id="date">Fri 1/01</div>
             </div>
 
             <div class="wii-btn-right">
                 <svg viewBox="0 0 24 24">
-                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                 </svg>
+                <div class="wii-mail-badge"></div>
             </div>
         </div>
     </div>
@@ -359,9 +421,9 @@
 
     <div class="wii-modal" id="about-modal">
         <h2>👤 About Me</h2>
-        <hr style="border: 0; border-top: 2px solid #e2e2e2; margin: 15px 0;">
-        <p>Yo, I'm tomoksi.</p>
-        <p> I'm a beginner dev interested in programming and STEM subjects. I like pears and retro consoles.</p>
+        <hr style="border: 0; border-top: 2px solid #e8e8e8; margin: 18px 0;">
+        <p>Siemanko! Witaj w moim kanale w stylu konsoli Wii.</p>
+        <p>Tutaj możesz wpisać wszystko o sobie – czym się zajmujesz, jakie projekty tworzysz albo jakie są Twoje zajawki!</p>
         <button class="wii-modal-close" onclick="closeAllModals()">Start</button>
     </div>
 
@@ -382,11 +444,11 @@
         interactables.forEach(item => {
             item.addEventListener('mouseenter', () => {
                 cursorPath.setAttribute('d', pointingHand);
-                cursor.style.transform = 'translate(-15px, -10px) scale(1.1)';
+                cursor.style.transform = 'translate(-14px, -8px) scale(1.08)';
             });
             item.addEventListener('mouseleave', () => {
                 cursorPath.setAttribute('d', openHand);
-                cursor.style.transform = 'translate(-15px, -10px) scale(1)';
+                cursor.style.transform = 'translate(-14px, -8px) scale(1)';
             });
         });
 
