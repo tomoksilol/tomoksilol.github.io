@@ -1,1 +1,307 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tomoksilol</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #000000;
+            background-image: linear-gradient(90deg, rgba(255, 0, 127, 0.07) 50%, transparent 50%),
+                              linear-gradient(#111 50%, #000 50%);
+            background-size: 40px 40px, 6px 6px;
+            color: #ffffff;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 14px;
+            padding: 20px;
+        }
 
+        .profile-container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: #111111;
+            border: 4px double #00ff55; 
+            box-shadow: 0px 0px 25px #ff007f; 
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 3px dashed #ff007f;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-family: 'Impact', Charcoal, sans-serif;
+            font-size: 3rem;
+            color: #ff007f;
+            text-shadow: 3px 3px 0px #00ff55, -3px -3px 0px #00ffff;
+            letter-spacing: 3px;
+        }
+        .status {
+            color: #00ffff;
+            font-weight: bold;
+            margin-top: 5px;
+            font-size: 1.1rem;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .left-col, .right-col {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .discord-widget {
+            border: 3px solid #ff007f;
+            background: #070707;
+            padding: 15px;
+            position: relative;
+            box-shadow: inset 0 0 10px rgba(0,255,85,0.2);
+        }
+        .discord-avatar-wrapper {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            background: #18191c;
+            border: 2px dashed #00ff55;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .discord-avatar-wrapper::before {
+            content: "RAWR XD";
+            font-family: 'Impact', sans-serif;
+            font-size: 2.5rem;
+            color: rgba(255, 0, 127, 0.15);
+            position: absolute;
+            transform: rotate(-20deg);
+            z-index: 1;
+        }
+
+        .discord-avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+        }
+
+        .discord-badges {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            background: rgba(0,0,0,0.6);
+            padding: 4px 6px;
+            border-radius: 4px;
+            border: 1px solid #ff007f;
+            z-index: 3;
+        }
+        .badge {
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: inline-block;
+            line-height: 1;
+        }
+
+        .discord-info {
+            margin-top: 15px;
+            text-align: center;
+            border-top: 1px double #00ff55;
+            padding-top: 10px;
+        }
+        .discord-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 1px 1px #ff007f;
+        }
+        .discord-tag {
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .discord-activity {
+            margin-top: 10px;
+            background: #111;
+            border: 1px solid #00ffff;
+            padding: 8px;
+            font-size: 0.85rem;
+            text-align: left;
+            position: relative;
+        }
+        .activity-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: #00ff55;
+            border-radius: 50%;
+            margin-right: 5px;
+            box-shadow: 0 0 8px #00ff55;
+        }
+
+        .zebra-bar {
+            height: 15px;
+            background: linear-gradient(45deg, #000 25%, #ff007f 25%, #ff007f 50%, #000 50%, #000 75%, #ff007f 75%);
+            background-size: 20px 20px;
+            margin-top: 10px;
+        }
+
+        .box {
+            background: #000000;
+            border: 2px solid #00ff55;
+            padding: 15px;
+            box-shadow: 4px 4px 0px rgba(255, 0, 127, 0.3);
+        }
+        .box-title {
+            background: #ff007f;
+            color: #000;
+            font-family: 'Impact', sans-serif;
+            padding: 4px 8px;
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            display: inline-block;
+            transform: skewX(-10deg);
+        }
+
+        a {
+            color: #00ffff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            color: #ff007f;
+            text-decoration: underline;
+            background: #00ff55;
+        }
+
+        ul {
+            list-style-type: '⚡ ';
+            margin-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+
+        .highlight-text {
+            color: #ff007f;
+            font-weight: bold;
+        }
+        .cyan-text {
+            color: #00ffff;
+        }
+
+        footer {
+            margin-top: 25px;
+            border-top: 3px dashed #00ff55;
+            padding-top: 15px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #888;
+        }
+        .blink {
+            animation: blinker 0.8s linear infinite;
+            color: #ff007f;
+            font-weight: bold;
+        }
+        @keyframes blinker {
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="profile-container">
+    
+    <!-- NAGŁÓWEK -->
+    <header>
+        <h1>tomoksilol</h1>
+        <div class="status"> Status: <span class="blink">ONLINE 24/7</span> 👾</div>
+    </header>
+
+    <!-- GŁÓWNA ZAWARTOŚĆ -->
+    <div class="main-content">
+        
+        <!-- LEWA KOLUMNA -->
+        <div class="left-col">
+            
+            <!-- Discord Widget Box -->
+            <div class="discord-widget">
+                <div class="discord-avatar-wrapper">
+                    <!-- 1 Badge: one-of-a-kind z emotką 🪽 -->
+                    <div class="discord-badges">
+                        <span class="badge" title="one-of-a-kind">🪽</span>
+                    </div>
+                    
+                    <!-- Grafika profilowa z repozytorium GitHub -->
+                    <img class="discord-avatar-img" src="2a47c861cc5e03adce25f5e4cdcb0b20.jpg" alt="Profile">
+                </div>
+                
+                <div class="discord-info">
+                    <div class="discord-name">tomoksilol<span class="discord-tag">#0000</span></div>
+                    
+                    <div class="discord-activity">
+                        <span class="activity-indicator"></span><strong>GTR: W grze</strong><br>
+                        <span class="cyan-text">Pokémon Emerald Version</span><br>
+                        <span style="color: #666; font-size: 11px;">Gierka: 02:45:12 min</span>
+                    </div>
+                </div>
+                
+                <div class="zebra-bar"></div>
+            </div>
+
+            <!-- UR CONTACT -->
+            <div class="box">
+                <div class="box-title">CONNECT WIRELESS</div>
+                <ul>
+                    <li>Discord ID: <span class="highlight-text">tomoksilol</span></li>
+                    <li>Matrix: <a href="https://matrix.to/#/@tomoksilol:matrix.org">matrix.org:tomoksilol</a></li>
+                    <li>Web: <a href="#">localhost://2006/</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- PRAWA KOLUMNA -->
+        <div class="right-col">
+            
+            <!-- ABOUT ME -->
+            <div class="box">
+                <div class="box-title">ABOUT_ME.EXE</div>
+                <p>Yo, I'm <span class="highlight-text">tomoksi</span>. I'm interested in programming and <span class="highlight-text">STEM Subjects</span>; I like <span class="highlight-text">pears</span>, <span class="highlight-text">Retro consoles and Pokémons</span>.</p> 
+            </div>
+        </div>
+
+    </div>
+
+    <!-- STOPKA -->
+    <footer>
+        <p><span class="blink">RAWR! XD</span> [2006-2026]</p>
+    </footer>
+
+</div>
+
+</body>
+</html>
